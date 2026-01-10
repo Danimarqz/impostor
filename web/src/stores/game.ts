@@ -3,6 +3,7 @@ import { writable } from 'svelte/store';
 // Define the shape of our frontend state (mirroring Go structs)
 export interface GameState {
   status: 'CONNECTING' | 'WAITING' | 'PLAYING' | 'VOTING' | 'FINISHED';
+  lobbyId?: string;
   me: {
     id: string;
     name: string;
@@ -10,11 +11,12 @@ export interface GameState {
     role?: 'CIVILIAN' | 'IMPOSTOR';
     word?: string;
   };
-  players: Array<{ id: string; name: string }>;
+  players: Array<{ id: string; name: string; is_leader?: boolean }>;
 }
 
 const initialState: GameState = {
   status: 'CONNECTING',
+  lobbyId: '',
   me: { id: '', name: '', isLeader: false },
   players: []
 };
@@ -38,6 +40,7 @@ export const connect = (lobbyId: string, playerName: string) => {
     console.log("Connected to WS");
     updateGame({
       status: 'WAITING',
+      lobbyId: lobbyId,
       me: { id: playerId, name: playerName, isLeader: false }
     });
   };
