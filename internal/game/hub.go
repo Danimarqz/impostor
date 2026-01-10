@@ -53,6 +53,7 @@ type Lobby struct {
 	ID      string
 	Players map[string]*domain.Player
 	Clients map[string]NetworkClient // Map playerID -> Connection
+	Votes   map[string]string        // VoterID -> TargetID
 	Config  domain.LobbyConfig
 	State   domain.LobbyState
 	
@@ -69,13 +70,21 @@ func NewLobby(id string, host *domain.Player) *Lobby {
 	return &Lobby{
 		ID:      id,
 		Players: players,
+		Votes:   make(map[string]string),
 		State:   domain.StateWaiting,
 	}
 }
 
-// AddPlayer adds a player to the lobby in a thread-safe manner.
-func (l *Lobby) AddPlayer(p *domain.Player) {
+// AddPlayerSafe adds a player and returns true if it was the first player (Leader).
+func (l *Lobby) AddPlayerSafe(p *domain.Player) bool {
 	l.mu.Lock()
 	defer l.mu.Unlock()
+	
+	isFirst := len(l.Players) == 0
+	if isFirst {
+		p.IsLeader = true
+	}
+	
 	l.Players[p.ID] = p
+	return isFirst
 }

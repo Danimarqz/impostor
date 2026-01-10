@@ -11,14 +11,19 @@ export interface GameState {
     role?: 'CIVILIAN' | 'IMPOSTOR';
     word?: string;
   };
-  players: Array<{ id: string; name: string; is_leader?: boolean }>;
+  players: Array<{ id: string; name: string; is_leader?: boolean; role?: string }>;
+  messages: Array<{ from: string; text: string }>;
+  winner?: string;
+  kicked?: string;
+  role_was?: string;
 }
 
 const initialState: GameState = {
   status: 'CONNECTING',
   lobbyId: '',
   me: { id: '', name: '', isLeader: false },
-  players: []
+  players: [],
+  messages: []
 };
 
 export const game = writable<GameState>(initialState);
@@ -66,6 +71,20 @@ export const connect = (lobbyId: string, playerName: string) => {
       if (data.players) {
         game.update(g => ({ ...g, players: data.players }));
       }
+      if (data.type === 'CHAT_MESSAGE') {
+        game.update(g => ({ ...g, messages: [...g.messages, { from: data.from, text: data.text }] }));
+      }
+      if (data.type === 'PLAYER_LIST') {
+        game.update(g => {
+          // Check if I am now the leader
+          const me = data.players.find((p: any) => p.id === g.me.id);
+          return {
+            ...g,
+            players: data.players,
+            me: me ? { ...g.me, isLeader: me.is_leader } : g.me
+          };
+        });
+      }
       if (data.status) { // Assuming backend sends full state or partial updates
         game.update(g => ({ ...g, status: data.status }));
       }
@@ -76,6 +95,24 @@ export const connect = (lobbyId: string, playerName: string) => {
         }));
       }
       // Add other handlers (player list updates etc)
+      if (data.type === 'VOTE_UPDATE') {
+        // Store votes if we want to show counts
+        // For now, let's just log it or update a 'votes' field in state
+        console.log("Votes updated:", data.votes);
+      }
+      if (data.status === 'FINISHED') {
+        game.update(g => ({
+          ...g,
+          status: 'FINISHED',
+          winner: data.winner,
+          kicked: data.kicked,
+          role_was: data.role_was,
+          players: data.reveal || g.players // Update players with roles if provided
+        }));
+      }
+      if (data.type === 'GAME_RESET' || (data.status === 'WAITING' && !data.type)) {
+        game.update(g => ({ ...g, status: 'WAITING', winner: undefined, kicked: undefined, role_was: undefined }));
+      }
     } catch (e) {
       console.error("Parse error", e);
     }

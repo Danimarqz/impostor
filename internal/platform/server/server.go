@@ -43,6 +43,10 @@ func (s *Server) setupRoutes() {
 		return c.JSON(fiber.Map{"status": "ok"})
 	})
 
+	// REST API Routes
+	s.App.Post("/api/lobby", s.createLobbyHandler)
+	s.App.Get("/api/categories", s.getCategoriesHandler)
+
 	s.setupWebsocketRoutes()
 }
 

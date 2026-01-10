@@ -48,6 +48,7 @@ type WordPair struct {
 // LobbyConfig defines the rules of the match.
 type LobbyConfig struct {
 	Mode           GameMode `json:"mode"`
+	Language       string   `json:"language"` // "en" or "es"
 	Categories     []string `json:"categories"`
 	Rounds         int      `json:"rounds"`
 	VotingTimeSecs int      `json:"voting_time_secs"`
