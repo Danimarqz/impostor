@@ -49,6 +49,16 @@ func (s *Server) setupRoutes() {
 	s.App.Get("/api/word", s.getRandomWordHandler)
 
 	s.setupWebsocketRoutes()
+
+	// Serve Static Files (Frontend)
+	s.App.Static("/", "./public")
+
+	// SPA Fallback: Serve index.html for unknown routes (if using client-side routing)
+	// For Astro static build, usually exact paths match. But for "virtual" routes handled by Svelte, we might need fallback.
+	// Since this app seems to use just Board.svelte conditional rendering on a single page, Static "/" should cover "index.html".
+	s.App.Get("*", func(c *fiber.Ctx) error {
+		return c.SendFile("./public/index.html")
+	})
 }
 
 // Run starts the server on the specified port.

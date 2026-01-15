@@ -1,0 +1,26 @@
+# Git
+.git
+.gitignore
+
+# Node
+node_modules
+npm-debug.log
+web/node_modules
+web/.astro
+
+# Go
+vendor
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode
+.idea
+*.swp
+*.swo
+
+# Brain/Agent
+brain/
+.gemini/
