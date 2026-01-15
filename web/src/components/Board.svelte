@@ -4,6 +4,8 @@
     import LobbyRoom from './LobbyRoom.svelte';
     import GameView from './GameView.svelte';
     import Chat from './Chat.svelte';
+    import OfflineGame from './OfflineGame.svelte';
+    import { offline } from '../stores/offline';
     import { fade, fly } from 'svelte/transition';
     import { language } from '../stores/language';
     import { t } from '../lib/i18n';
@@ -45,7 +47,11 @@
         </header>
 
         <main class="w-full flex justify-center perspective-1000 pb-20">
-            {#if $game.status === 'CONNECTING'}
+            {#if $offline.status !== 'IDLE'}
+                <div class="w-full flex justify-center" in:fade={{ duration: 300 }}>
+                    <OfflineGame />
+                </div>
+            {:else if $game.status === 'CONNECTING'}
                 <Landing />
             {:else if $game.status === 'WAITING'}
                 <LobbyRoom lobbyId={$game.lobbyId || '???'} />

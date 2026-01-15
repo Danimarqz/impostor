@@ -46,6 +46,7 @@ func (s *Server) setupRoutes() {
 	// REST API Routes
 	s.App.Post("/api/lobby", s.createLobbyHandler)
 	s.App.Get("/api/categories", s.getCategoriesHandler)
+	s.App.Get("/api/word", s.getRandomWordHandler)
 
 	s.setupWebsocketRoutes()
 }

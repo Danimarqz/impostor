@@ -15,5 +15,9 @@
     "svelte": "^5.46.1",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "happy-dom": "^20.3.0",
+    "vitest": "^4.0.17"
   }
 }

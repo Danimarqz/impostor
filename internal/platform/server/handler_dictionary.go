@@ -13,3 +13,17 @@ func (s *Server) getCategoriesHandler(c *fiber.Ctx) error {
 		"categories": names,
 	})
 }
+
+func (s *Server) getRandomWordHandler(c *fiber.Ctx) error {
+	category := c.Query("category", "General")
+	lang := c.Query("lang", "en")
+
+	word, err := game.GetRandomWord(category, lang)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Failed to get random word",
+		})
+	}
+
+	return c.JSON(word)
+}

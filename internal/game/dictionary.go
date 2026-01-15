@@ -1,6 +1,10 @@
 package game
 
-import "impostor/internal/domain"
+import (
+	"impostor/internal/domain"
+	"math/rand"
+	"time"
+)
 
 // DefaultCategories provides the static content for the game (English).
 var DefaultCategories = []domain.Category{
@@ -291,4 +295,15 @@ func GetAllCategoryNames(language string) []string {
 		names = append(names, c.Name)
 	}
 	return names
+}
+
+func GetRandomWord(categoryName string, language string) (domain.WordPair, error) {
+	category := GetCategoryByName(categoryName, language)
+	if len(category.Pairs) == 0 {
+		return domain.WordPair{}, nil
+	}
+	
+    r := rand.New(rand.NewSource(time.Now().UnixNano()))
+    idx := r.Intn(len(category.Pairs))
+    return category.Pairs[idx], nil
 }

@@ -28,7 +28,7 @@ A modern, real-time social deduction game inspired by Spyfall and The Chameleon.
 
 1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/impostor.git
+    git clone https://github.com/Danimarqz/impostor.git
     cd impostor
     ```
 

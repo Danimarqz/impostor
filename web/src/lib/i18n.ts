@@ -15,6 +15,8 @@ const translations: Translations = {
   'landing.nameLabel': { en: 'Your Code Name', es: 'Tu Nombre en Clave' },
   'landing.lobbyLabel': { en: 'Mission Code (Optional)', es: 'Código de Misión (Opcional)' },
   'landing.joinButton': { en: 'JOIN THE MISSION', es: 'UNIRSE A LA MISIÓN' },
+  'landing.enterCredentials': { en: 'Enter your credentials to access the system.', es: 'Introduce tus credenciales para acceder al sistema.' },
+  'landing.playOffline': { en: 'PLAY OFFLINE', es: 'JUGAR OFFLINE' },
 
   // Lobby Room
   'lobby.operationId': { en: 'Operation ID', es: 'ID de Operación' },
@@ -74,6 +76,35 @@ const translations: Translations = {
   'chat.startConversation': { en: 'Start the conversation...', es: 'Inicia la conversación...' },
   'chat.typeMessage': { en: 'Type a message...', es: 'Escribe un mensaje...' },
   'chat.send': { en: 'SEND', es: 'ENVIAR' },
+
+  // Offline Mode
+  'offline.passTheDevice': { en: 'Pass the Device', es: 'Pasa el Dispositivo' },
+  'offline.player': { en: 'Player', es: 'Jugador' },
+  'offline.tapToSee': { en: 'Tap card to see your secret word', es: 'Toca para ver tu palabra secreta' },
+  'offline.keepSecret': { en: 'Keep it secret!', es: '¡Mantenlo en secreto!' },
+  'offline.yourRole': { en: 'Your Role', es: 'Tu Rol' },
+  'offline.secretWord': { en: 'Secret Word', es: 'Palabra Secreta' },
+  'offline.nextPlayer': { en: 'Next Player', es: 'Siguiente Jugador' },
+  'offline.missionProgress': { en: 'Mission in Progress', es: 'Misión en Progreso' },
+  'offline.askQuestions': { en: "Ask questions. Find the Impostor. Don't reveal your word.", es: "Haz preguntas. Encuentra al Impostor. No reveles tu palabra." },
+  'offline.category': { en: 'Category', es: 'Categoría' },
+  'offline.identifyImpostor': { en: 'Identify Impostor (Finish)', es: 'Identificar Impostor (Finalizar)' },
+  'offline.missionReport': { en: 'Mission Report', es: 'Reporte de Misión' },
+  'offline.impostorWas': { en: 'The Impostor Was', es: 'El Impostor Era' },
+  'offline.civilianWord': { en: 'Civilian Word', es: 'Palabra Civil' },
+  'offline.impostorTrap': { en: 'Impostor Trap', es: 'Trampa de Impostor' },
+  'offline.playAgain': { en: 'Play Again', es: 'Jugar de Nuevo' },
+  'offline.backToMenu': { en: 'Back to Menu', es: 'Volver al Menú' },
+  'offline.blendIn': { en: "Blend in. Don't get caught.", es: "Disimula. Que no te atrapen." },
+  'offline.startGame': { en: 'START GAME', es: 'INICIAR JUEGO' },
+  'offline.setup': { en: 'Offline Setup', es: 'Configuración Offline' },
+  'offline.players': { en: 'Players', es: 'Jugadores' },
+  'offline.difficulty': { en: 'Difficulty', es: 'Dificultad' },
+  'offline.normal': { en: 'NORMAL', es: 'NORMAL' },
+  'offline.easy': { en: 'EASY', es: 'FÁCIL' },
+  'offline.diffNormalDesc': { en: 'Impostor only knows they are the Impostor.', es: 'El Impostor solo sabe que es el Impostor.' },
+  'offline.diffEasyDesc': { en: 'Impostor gets a hint (the trap word).', es: 'El Impostor recibe una pista (la palabra trampa).' },
+  'offline.starts': { en: 'starts the discussion!', es: '¡empieza la discusión!' },
 };
 
 export function t(key: string, lang: Language = 'en'): string {
