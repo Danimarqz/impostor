@@ -38,8 +38,10 @@ export const connect = (lobbyId: string, playerName: string) => {
   // Generate random ID for demo purposes if not persisted
   const playerId = Math.random().toString(36).substring(7);
 
-  // Connect to Backend (adjust port if needed, assuming 8080)
-  socket = new WebSocket(`ws://localhost:8080/ws/${lobbyId}?playerId=${playerId}&playerName=${playerName}`);
+  // Connect to Backend (dynamically determine host)
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+  const host = window.location.host;
+  socket = new WebSocket(`${protocol}//${host}/ws/${lobbyId}?playerId=${playerId}&playerName=${playerName}`);
 
   socket.onopen = () => {
     console.log("Connected to WS");

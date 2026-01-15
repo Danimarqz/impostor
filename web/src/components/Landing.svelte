@@ -28,7 +28,7 @@
         if (!finalLobby) {
             // Create New Game via API
             try {
-                const res = await fetch('http://localhost:8080/api/lobby', { method: 'POST' });
+                const res = await fetch('/api/lobby', { method: 'POST' });
                 const data = await res.json();
                 finalLobby = data.lobby_id;
             } catch (e) {

@@ -19,7 +19,7 @@
 
     async function fetchCategories() {
         try {
-            const res = await fetch(`http://localhost:8080/api/categories?lang=${lang}`);
+            const res = await fetch(`/api/categories?lang=${lang}`);
             if (res.ok) {
                 const data = await res.json();
                 categories = data.categories;

@@ -65,7 +65,7 @@ function createOfflineStore() {
     startGame: async (config: OfflineConfig) => {
       // Fetch word from API
       try {
-        const res = await fetch(`http://localhost:8080/api/word?category=${encodeURIComponent(config.category)}&lang=${config.lang}`);
+        const res = await fetch(`/api/word?category=${encodeURIComponent(config.category)}&lang=${config.lang}`);
         if (!res.ok) throw new Error("Failed to fetch word");
         const wordPair = await res.json();
 
