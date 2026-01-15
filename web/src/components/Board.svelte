@@ -30,29 +30,31 @@
     $: if (showMobileChat) unreadCount = 0;
 </script>
 
-<div class="flex min-h-screen w-full relative overflow-hidden">
+<div class="flex h-full w-full relative overflow-hidden">
     <!-- Main Content Area -->
-    <div class="flex-1 flex flex-col items-center p-4 relative z-10 overflow-y-auto h-screen">
-        <header class="mb-12 text-center animate-fade-in-down mt-8">
-            <h1 class="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 drop-shadow-lg tracking-tighter">
+    <div class="flex-1 flex flex-col items-center p-4 relative z-10 overflow-hidden h-full">
+        <header class="mb-4 md:mb-12 text-center animate-fade-in-down shrink-0 mt-4 md:mt-8">
+            <h1 class="text-5xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 drop-shadow-lg tracking-tighter">
                 IMPOSTOR
             </h1>
             {#if $game.status !== 'CONNECTING'}
-            <div class="mt-4 px-4 py-1 bg-white/10 backdrop-blur-md rounded-full inline-block border border-white/10">
-                    <p class="text-blue-200 text-xs font-bold uppercase tracking-[0.2em] shadow-sm">
+            <div class="mt-2 md:mt-4 px-4 py-1 bg-white/10 backdrop-blur-md rounded-full inline-block border border-white/10">
+                    <p class="text-blue-200 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] shadow-sm">
                         {$game.status} {t('header.phase', lang)}
                     </p>
             </div>
             {/if}
         </header>
 
-        <main class="w-full flex justify-center perspective-1000 pb-20">
+        <main class="w-full flex-1 flex flex-col items-center justify-start md:justify-center perspective-1000 min-h-0 pb-4 md:pb-20 overflow-y-auto md:overflow-visible">
             {#if $offline.status !== 'IDLE'}
-                <div class="w-full flex justify-center" in:fade={{ duration: 300 }}>
+                <div class="w-full h-full flex items-center justify-center md:h-auto md:block my-auto" in:fade={{ duration: 300 }}>
                     <OfflineGame />
                 </div>
             {:else if $game.status === 'CONNECTING'}
-                <Landing />
+                <div class="my-auto w-full flex justify-center">
+                    <Landing />
+                </div>
             {:else if $game.status === 'WAITING'}
                 <LobbyRoom lobbyId={$game.lobbyId || '???'} />
             {:else if ['PLAYING', 'VOTING', 'FINISHED'].includes($game.status)}

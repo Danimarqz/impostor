@@ -41,7 +41,7 @@
     }
 </script>
 
-<div class="flex flex-col items-center justify-center w-full max-w-md p-8 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 relative overflow-hidden group">
+<div class="flex flex-col items-center justify-center w-full max-w-md p-6 md:p-8 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 relative overflow-hidden group">
     <!-- Glow effect -->
     <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/30 rounded-full blur-3xl group-hover:bg-blue-500/50 transition duration-1000"></div>
     <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-purple-500/30 rounded-full blur-3xl group-hover:bg-purple-500/50 transition duration-1000"></div>

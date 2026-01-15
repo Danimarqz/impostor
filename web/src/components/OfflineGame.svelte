@@ -7,7 +7,7 @@
     import { fly } from 'svelte/transition';
 </script>
 
-<div class="w-full flex justify-center" in:fly={{ y: 20, duration: 500 }}>
+<div class="w-full flex justify-center items-center" in:fly={{ y: 20, duration: 500 }}>
     {#if $offline.status === 'SETUP'}
         <OfflineSetup />
     {:else if $offline.status === 'PASSING'}

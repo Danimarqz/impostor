@@ -46,7 +46,7 @@
     }
 </script>
 
-<div class="w-full max-w-md p-8 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 flex flex-col items-center">
+<div class="w-full max-w-md p-6 md:p-8 bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 flex flex-col items-center">
     <h2 class="text-3xl font-bold mb-6 text-white text-center"> {t('offline.setup', lang)} </h2>
     
     <div class="w-full space-y-6">

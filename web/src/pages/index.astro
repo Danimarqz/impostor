@@ -17,6 +17,14 @@ import "../styles/global.css";
 		/>
 		<title>El Impostor - Web</title>
 		<style>
+			:global(html),
+			:global(body) {
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				margin: 0;
+				padding: 0;
+			}
 			:global(body) {
 				font-family: "Outfit", sans-serif;
 			}
@@ -46,7 +54,7 @@ import "../styles/global.css";
 		</style>
 	</head>
 	<body
-		class="bg-gray-950 min-h-screen text-white overflow-x-hidden selection:bg-purple-500 selection:text-white"
+		class="bg-gray-950 text-white selection:bg-purple-500 selection:text-white"
 	>
 		<!-- Background Effects -->
 		<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -64,7 +72,7 @@ import "../styles/global.css";
 			</div>
 		</div>
 
-		<div class="relative z-10 w-full min-h-screen flex flex-col">
+		<div class="relative z-10 w-full h-full flex flex-col">
 			<Board client:load />
 		</div>
 	</body>
